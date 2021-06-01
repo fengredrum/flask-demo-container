@@ -1,14 +1,11 @@
-FROM python:3.8-alpine
+FROM python:3.6-slim
 
-COPY ./app/requirements.txt /app/requirements.txt
+# Install dependencies
+COPY requirements.txt /
+RUN pip3 install --no-cache-dir --upgrade pip && \
+    pip3 install --no-cache-dir --user -r /requirements.txt
 
 WORKDIR /app
-
-RUN apk add --update \
-    && pip install --upgrade pip  \
-    && pip install -r requirements.txt \
-    && rm -rf /var/cache/apk/*
-
 COPY ./app /app
-
-CMD ["python", "app.py"]
+ENV FLASK_APP=hello
+CMD [ "python", "-m", "flask", "run", "--host=0.0.0.0", "--port=8008" ]
