@@ -10,4 +10,6 @@ def hello_world():
     sleep_time = 1
     uname = platform.uname()
     time.sleep(sleep_time)
-    return "<p>Hello, World!</p>" + f"Node Name: {uname.node}" + f"Sleep time: {sleep_time}"
+    return "<p>Hello, World!</p>" + \
+        f"</p>Node Name: {uname.node}</p>" + \
+        f"</p>Sleep time: {sleep_time}</p>"
